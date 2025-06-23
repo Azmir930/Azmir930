@@ -109,7 +109,6 @@ Node *findNode(int value)
     {
         if (temp->value == value)
         {
-
             return temp;
         }
         else if (temp->value > value)
