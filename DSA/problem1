@@ -1,0 +1,86 @@
+#include <iostream>
+using namespace std;
+
+struct Pair
+{
+    int val;
+    int idx;
+};
+
+const int N = 100;
+int counts[N];
+Pair temp[N];
+
+void merge(Pair arr[], int l, int m, int r)
+{
+    int i = l;
+    int j = m + 1;
+    int k = l;
+    int rightCount = 0;
+
+    while (i <= m && j <= r)
+    {
+        if (arr[i].val <= arr[j].val)
+        {
+            counts[arr[i].idx] += rightCount;
+            temp[k++] = arr[i++];
+        }
+        else
+        {
+            rightCount++;
+            temp[k++] = arr[j++];
+        }
+    }
+
+    while (i <= m)
+    {
+        counts[arr[i].idx] += rightCount;
+        temp[k++] = arr[i++];
+    }
+
+    while (j <= r)
+    {
+        temp[k++] = arr[j++];
+    }
+
+    for (int s = l; s <= r; s++)
+    {
+        arr[s] = temp[s];
+    }
+}
+
+void mergeSort(Pair arr[], int l, int r)
+{
+    if (l < r)
+    {
+        int m = (l + r) / 2;
+        mergeSort(arr, l, m);
+        mergeSort(arr, m + 1, r);
+        merge(arr, l, m, r);
+    }
+}
+
+int main()
+{
+    int n;
+    cin >> n;
+    int nums[N];
+    Pair arr[N];
+
+    for (int i = 0; i < n; i++)
+    {
+        cin >> nums[i];
+        arr[i].val = nums[i];
+        arr[i].idx = i;
+        counts[i] = 0;
+    }
+
+    mergeSort(arr, 0, n - 1);
+
+    for (int i = 0; i < n; i++)
+    {
+        cout << counts[i] << " ";
+    }
+    cout << endl;
+    return 0;
+}
