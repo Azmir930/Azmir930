@@ -1,6 +1,5 @@
 - 👋 Hi, I’m @Azmir930
 - 👀 I’m interested in coding
-- 🌱 I’m currently learning VFX
 - 💞️ I’m looking to collaborate on 
 - 📫 How to reach me https://www.instagram.com/
 - 😄 Pronouns: ...
